@@ -12,12 +12,21 @@ def hello_world():
 
 @app.route('/text-to-speech')
 def text_to_speech():
+    request_json = request.get_json()
+
+    if request_json != None:
+    
+        text = request_json['text']
+        return text
+    else:
+        return 'None'
+
+
     return 'text-to-speech'
 
 
 @app.route('/audio-to-text', methods = ['POST','GET'])
 def audio_to_text():
-
 
     request_json = request.get_json()
 
@@ -38,7 +47,6 @@ def audio_to_text():
         return content
     else:
         return 'None'
-    
 
 if __name__=="__main__":
     app.run(debug = True)
